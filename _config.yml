@@ -5,12 +5,12 @@ baseurl: /today # the subpath of your site, e.g. /blog
 # domain: ppa4ipa.com
 permalink: /:title
 # email: no@email.com
-author: Новороссийская Церковь Евангельских Христиан-Баптистов # Краснодарский край, г. Новороссийск, ул. Плавневая д. 1
+author: Новороссийская Церковь ЕХБ # Краснодарский край, г. Новороссийск, ул. Плавневая д. 1
 # twitter_username: me
 # github_username:  me
 
 title: Чтение Библии на сегодня
-# longtitle: ооооочень длинный заголовок
+longtitle: Новороссийская Церковь Евангельских Христиан-Баптистов
 
 description: Чтение на сегодня по плану чтения Библии за год
 
