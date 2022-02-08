@@ -1,0 +1,48 @@
+theme: minima
+
+baseurl: /today # the subpath of your site, e.g. /blog
+# url: https://ppa4ipa.com # the base hostname & protocol for your site
+# domain: ppa4ipa.com
+permalink: /:title
+# email: no@email.com
+author: Новороссийская Церковь Евангельских Христиан-Баптистов # Краснодарский край, г. Новороссийск, ул. Плавневая д. 1
+# twitter_username: me
+# github_username:  me
+
+title: Чтение Библии на сегодня
+# longtitle: ооооочень длинный заголовок
+
+description: Чтение на сегодня по плану чтения Библии за год
+
+# header_pages:
+#   - index.md
+#   - contacts.md
+  
+sass:
+  style: compressed
+
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  ignore:
+    envs: [local]
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      image: "/img/card.png"
+      layout: post
+  -
+    scope:
+      path: "img"
+    values:
+      image: true
+plugins:
+  - jekyll-sitemap
+
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
