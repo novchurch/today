@@ -21,9 +21,10 @@ layout: default
     {%- assign bible = site.data.rst -%}
     {%- assign plan = site.data.plan[day | minus: 1] -%}
     <ol>
-      {% for passage in plan %}
-      <li>{{ passage }}</li>
-      {% endfor %}
+      <li>{{ plan.old }}</li>
+      <li>{{ plan.new }}</li>
+      <li>{{ plan.ps }}</li>
+      <li>{{ plan.pr }}</li>
     </ol>
     {{ content }}
   </div>
