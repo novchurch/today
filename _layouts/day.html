@@ -16,16 +16,17 @@ layout: default
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    {%- assign day = page.slug -%}
+    {%- assign day = page.title | minus: 1 -%}
     {%- assign books = site.data.books -%}
     {%- assign bible = site.data.rst -%}
-    {%- assign plan = site.data.plan[day | minus: 1] -%}
+    {%- assign plan = site.data.plan[day] -%}
     <ol>
       <li>{{ plan.old }}</li>
       <li>{{ plan.new }}</li>
       <li>{{ plan.ps }}</li>
       <li>{{ plan.pr }}</li>
     </ol>
+    <p>{{ books[22].book }}</p>
     {{ content }}
   </div>
 
