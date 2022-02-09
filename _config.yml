@@ -35,7 +35,7 @@ defaults:
       path: "" # an empty string here means all files in the project
     values:
       image: "/img/card.png"
-      layout: post
+      layout: day
   -
     scope:
       path: "img"
