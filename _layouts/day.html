@@ -19,8 +19,12 @@ layout: default
     {%- assign day = page.slug -%}
     {%- assign books = site.data.books -%}
     {%- assign bible = site.data.rst -%}
-    {%- assign plan = site.data.plan -%}
-    <h2>{{ plan[day | minus: 1] }}</h2>
+    {%- assign plan = site.data.plan[day | minus: 1] -%}
+    <ol>
+      {% for passage in plan %}
+      <li>{{ passage }}</li>
+      {% endfor %}
+    </ol>
     {{ content }}
   </div>
 
