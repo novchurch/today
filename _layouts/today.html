@@ -15,6 +15,6 @@ layout: default
   const year = new Date().getFullYear();
   const getLeapYear = year => year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
   const today = Math.floor((new Date() - new Date(year, 0, 0)) / 1000 / 60 / 60 / 24);
-  const redirect = {{ "/" | relative_url }} + getLeapYear(year) ? today > 31+28 ? : today - 1 : today;
+  const redirect = {{ "/" | relative_url }} + getLeapYear(year) ? today > 31+28 ? today - 1 : today : today;
   window.location.replace(redirect);
 </script>
