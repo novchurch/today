@@ -35,11 +35,3 @@ layout: default
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
-
-{% if site.posts %}
-{% assign posts = site.posts | reverse %}
-  <footer class="related">
-    <div class="previous">{% if page.previous.url %}<a href="{{ page.previous.url | relative_url }}">Предыдущий день</a>{% elsif posts.last.url %}<a href="{{ posts.last.url | relative_url }}">Последний день</a>{% endif %}</div>
-    <div class="next">{% if page.next.url %}<a href="{{ page.next.url | relative_url }}">Следующий день</a>{% elsif posts.first.url %}<a href="{{ posts.first.url | relative_url }}">Первый день</a>{% endif %}</div>
-  </footer>
-{% endif %}
