@@ -13,10 +13,10 @@ layout: default
     {%- assign bible = site.data.rst -%}
     {%- assign plan = site.data.plan[day] -%}
     <ul style="list-style-type: none;">
-      <li><details><summary><h2>{{ plan.old }}</h2></summary></details></li>
-      <li><details><summary><h2>{{ plan.new }}</h2></summary></details></li>
-      <li><details><summary><h2>{{ plan.ps }}</h2></summary></details></li>
-      <li><details><summary><h2>{{ plan.pr }}</h2></summary></details></li>
+      <li><details><summary><h2 style="display: inline;">{{ plan.old }}</h2></summary></details></li>
+      <li><details><summary><h2 style="display: inline;">{{ plan.new }}</h2></summary></details></li>
+      <li><details><summary><h2 style="display: inline;">{{ plan.ps }}</h2></summary></details></li>
+      <li><details><summary><h2 style="display: inline;">{{ plan.pr }}</h2></summary></details></li>
     </ul>
     {{ content }}
   </div>
