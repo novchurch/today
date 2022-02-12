@@ -12,12 +12,12 @@ layout: default
     {%- assign books = site.data.books -%}
     {%- assign bible = site.data.rst -%}
     {%- assign plan = site.data.plan[day] -%}
-    <ol>
-      <li>{{ plan.old }}</li>
-      <li>{{ plan.new }}</li>
-      <li>{{ plan.ps }}</li>
-      <li>{{ plan.pr }}</li>
-    </ol>
+    <ul style="list-style-type: none;">
+      <li><details><summary><h2>{{ plan.old }}</h2></summary></li>
+      <li><details><summary><h2>{{ plan.new }}</h2></summary></li>
+      <li><details><summary><h2>{{ plan.ps }}</h2></summary></li>
+      <li><details><summary><h2>{{ plan.pr }}</h2></summary></li>
+    </ul>
     {{ content }}
   </div>
 
