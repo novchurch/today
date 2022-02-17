@@ -4,12 +4,12 @@
 {%- assign start = endings[0] | split: " " -%}
 {%- assign start_book = start[0] -%}
 {%- assign start_verses = start[1] | split: ":" -%}
-{%- assign start_ch = start_verses[0] | plus 0 -%}
-{%- assign start_ver = start_verses[1] | plus 0 -%}
+{%- assign start_ch = start_verses[0] | plus: 0 -%}
+{%- assign start_ver = start_verses[1] | plus: 0 -%}
 {%- if endings[1] == nil -%}
   {%- assign end_book = start_book -%}
-  {%- assign end_ch = start_ch | plus 0 -%}
-  {%- assign end_ver = start_ver | plus 0 -%} 
+  {%- assign end_ch = start_ch | plus: 0 -%}
+  {%- assign end_ver = start_ver | plus: 0 -%} 
 {%- else -%}
   {%- assign end = endings[1] | split: " " -%}
   {%- if end[1] == nil -%}
@@ -20,11 +20,11 @@
     {%- assign end_verses = end[1] | split: ":" -%}
   {%- endif -%}
   {%- if end_verses[1] == nil -%}
-    {%- assign end_ch = start_ch | plus 0 -%}
-    {%- assign end_ver = end_verses[0] | plus 0 -%}
+    {%- assign end_ch = start_ch | plus: 0 -%}
+    {%- assign end_ver = end_verses[0] | plus: 0 -%}
   {%- else -%}
-    {%- assign end_ch = end_verses[0] | plus 0 -%}
-    {%- assign end_ver = end_verses[1] | plus 0 -%}
+    {%- assign end_ch = end_verses[0] | plus: 0 -%}
+    {%- assign end_ver = end_verses[1] | plus: 0 -%}
   {%- endif -%}
 {%- endif -%}
 
