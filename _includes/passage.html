@@ -37,10 +37,21 @@
 {%- endfor -%}
 
 {% for i in (start_ch..end_ch) %}
-  {% assign chapter = book[i] %}
+  {% assign chapter = book[i | minus: 1] %}
+  {% assign last_verse_index = chapter.size | minus: 1 %}
+  {% if i == start_ch %}
+    {% assign start_v = start_ver %}
+  {% else %}
+    {% assign start_v = 1 %}
+  {% endif %}
+  {% if i == end_ch %}
+    {% assign end_v = end_ver %}
+  {% else %}
+    {% assign end_v = last_verse_index %}
+  {% endif %}
   <ol start="{{ start_ver }}">
-  {% for j in (start_ver..end_ver) %}
-    {% assign verse = chapter[j] %}
+  {% for j in (start_v..end_v) %}
+    {% assign verse = chapter[j | minus: 1] %}
     <li>{{ verse }}</li>
   {%- endfor -%}
   </ol>
