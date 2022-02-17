@@ -1,0 +1,4 @@
+---
+layout: plan
+title: План
+---

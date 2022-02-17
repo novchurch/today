@@ -19,7 +19,9 @@ description: «Исследуйте Писания, ибо вы думаете �
 # header_pages:
 #   - index.md
 #   - contacts.md
-  
+
+show_excerpts: true
+
 sass:
   style: compressed
 

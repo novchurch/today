@@ -9,8 +9,6 @@ layout: default
 
   <div class="post-content e-content" itemprop="articleBody">
     {%- assign day = page.title | minus: 1 -%}
-    {%- assign books = site.data.books -%}
-    {%- assign bible = site.data.rst -%}
     {%- assign plan = site.data.plan[day] -%}
     <ul style="list-style-type: none; margin-left: 0;">
       <li><details><summary><h2 style="display: inline;">{{ plan.old }}</h2></summary></details></li>
