@@ -36,27 +36,16 @@
   {%- endif -%}
 {%- endfor -%}
 
-{% assign ch_range = (start_ch..end_ch) %}
-{% for i in ch_range %}
-  {% assign ch_index = i | minus: 1 %}
-  {% assign chapter = book[ch_index] %}
-  {% assign last_verse_index = chapter.size | minus: 1 %}
-  {% if i == start_ch %}
-    {% assign start_v = start_ver %}
-  {% else %}
-    {% assign start_v = 1 %}
-  {% endif %}
-  {% if i == end_ch %}
-    {% assign end_v = end_ver %}
-  {% else %}
-    {% assign end_v = last_verse_index %}
-  {% endif %}
+{%- for chapter in book offset: start_ch limit: end_ch | plus 1 | minus: start_ch -%}
   <ol start="{{ start_ver }}">
-  {% assign v_range = (start_v..end_v) %}
-  {% for j in v_range %}
-  {% assign ver_index = j | minus: 1 %}
-    {% assign verse = chapter[ver_index] %}
+  {%- for verse in chapter offset: start_ver limit: end_ver | plus 1 | minus: start_ver -%}
     <li>{{ verse }}</li>
   {%- endfor -%}
   </ol>
 {%- endfor -%}
+
+<script>
+  console.log({start: {book: "{{ start_book }}", chapter: "{{ start_ch }}",
+  verse: "{{ start_ver }}"}, end: {book: "{{ end_book }}", chapter: "{{ end_ch }}",
+  verse: "{{ end_ver }}"}})
+</script>
