@@ -36,8 +36,8 @@
   {%- endif -%}
   {%- if book_trigger -%}
     {%- assign book_index = b.index | minus: 1 -%}
-    {%- assign bookz[book_number][0] = bible[book_index] -%}
-    {%- assign bookz[book_number][1] = b.book -%}
+    {%- assign bookz[0][book_number] = bible[book_index] -%}
+    {%- assign bookz[1][book_number]= b.book -%}
     {%- assign book_number = book_number | plus: 1 -%}
   {%- endif -%}
   {%- if b.book == end_book -%}
