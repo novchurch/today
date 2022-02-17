@@ -36,9 +36,12 @@
   {%- endif -%}
 {%- endfor -%}
 
-{%- for chapter in book offset: start_ch limit: end_ch | plus 1 | minus: start_ch -%}
+{% for i in (start_ch..end_ch) %}
+  {% assign chapter = book[i] %}
   <ol start="{{ start_ver }}">
   {%- for verse in chapter offset: start_ver limit: end_ver | plus 1 | minus: start_ver -%}
+  {% for j in (start_ver..end_ver) %}
+    {% assign verse = chapter[j] %}
     <li>{{ verse }}</li>
   {%- endfor -%}
   </ol>
