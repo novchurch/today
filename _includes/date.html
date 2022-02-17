@@ -1,4 +1,4 @@
-{%- assign m = page.date | date: "%-m" -%}
+{%- assign m = include.date | date: "%-m" -%}
 {%- case m -%}
   {%- when "1" -%}
      {%- assign month = "января" -%}
@@ -27,4 +27,4 @@
   {%- else -%}
      {%- assign month = "" -%}
 {%- endcase -%}
-{{- page.date | date: "%-d" }}&nbsp;{{ month -}}
+{{- include.date | date: "%-d" }}&nbsp;{{ month -}}
