@@ -14,9 +14,10 @@
 
 {%- for b in books -%}
   {%- if b.book == start_book -%}
-    {%- assign book = bible[b.index | minus: 1] -%}
-    <p>Book: {{ book }}</p>
-    <p>Index: {{ b.index }}</p>
+    {%- assign book_index = b.index | minus: 1 -%}
+    {%- assign book = bible[book_index] -%}
+    <p>Book: {{ book[0][0] }}</p>
+    <p>Index: {{ book_index }}</p>
     {%- break -%}
   {%- endif -%}
 {%- endfor -%}
