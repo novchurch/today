@@ -48,12 +48,12 @@
   {%- for i in (start_ch..end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
     {%- assign chapter = first_book[ch_index] -%}
-    {%- if i == start_ch | plus: 0 -%}
+    {%- if i == start_ch -%}
       {%- assign start_v = start_ver -%}
     {%- else -%}
       {%- assign start_v = 1 -%}
     {%- endif -%}
-    {%- if i == end_ch | plus: 0 -%}
+    {%- if i == end_ch -%}
       {%- assign end_v = end_ver -%}
     {%- else -%}
       {%- assign end_v = chapter.size -%}
@@ -76,12 +76,12 @@
   {%- for i in (start_ch..first_book_end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
     {%- assign chapter = first_book[ch_index] -%}
-    {%- if i == start_ch | plus: 0 -%}
+    {%- if i == start_ch -%}
       {%- assign start_v = start_ver -%}
     {%- else -%}
       {%- assign start_v = 1 -%}
     {%- endif -%}
-    {%- if i == end_ch | plus: 0 -%}
+    {%- if i == end_ch -%}
       {%- assign end_v = end_ver -%}
     {%- else -%}
       {%- assign end_v = chapter.size -%}
