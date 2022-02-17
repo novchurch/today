@@ -28,7 +28,6 @@
   {%- endif -%}
 {%- endif -%}
 
-{%- assign second_book = nil -%}
 {%- for b in books -%}
   {%- if b.book == start_book -%}
     {%- assign book_index = b.index | minus: 1 -%}
@@ -39,37 +38,61 @@
   {%- endif -%}
 {%- endfor -%}
 
-
-<dl>
-{%- for i in (start_ch..end_ch) -%}
-  {%- assign ch_index = i | minus: 1 -%}
-  {%- assign chapter = first_book[ch_index] -%}
-  {%- if i == start_ch | plus: 0 -%}
-    {%- assign start_v = start_ver -%}
-  {%- else -%}
-    {%- assign start_v = 1 -%}
-  {%- endif -%}
-  {%- if i == end_ch | plus: 0 -%}
-    {%- assign end_v = end_ver -%}
-  {%- else -%}
-    {%- assign end_v = chapter.size -%}
-  {%- endif -%}
-  <dt>Глава {{ i }}</dt>
-  <dd>
-  <ol start="{{ start_ver }}">
-  {%- for j in (start_v..end_v) -%}
-  {%- assign ver_index = j | minus: 1 -%}
-    {%- assign verse = chapter[ver_index] -%}
-    <li>{{ verse }}</li>
+{%- unless second_book -%}
+  {%- for i in (start_ch..end_ch) -%}
+    {%- assign ch_index = i | minus: 1 -%}
+    {%- assign chapter = first_book[ch_index] -%}
+    {%- if i == start_ch | plus: 0 -%}
+      {%- assign start_v = start_ver -%}
+    {%- else -%}
+      {%- assign start_v = 1 -%}
+    {%- endif -%}
+    {%- if i == end_ch | plus: 0 -%}
+      {%- assign end_v = end_ver -%}
+    {%- else -%}
+      {%- assign end_v = chapter.size -%}
+    {%- endif -%}
+    {%- if start_ch == end_ch -%}
+      <h3>Глава {{ i }}</h3>
+    {%- endif -%}
+    <ol start="{{ start_ver }}">
+    {%- for j in (start_v..end_v) -%}
+    {%- assign ver_index = j | minus: 1 -%}
+      {%- assign verse = chapter[ver_index] -%}
+      <li>{{ verse }}</li>
+    {%- endfor -%}
+    </ol>
   {%- endfor -%}
-  </ol>
-  </dd>
-{%- endfor -%}
-</dl>
+{%- endunless -%}
 
 {%- if second_book -%}
-  <dl>
-  {%- for i in (start_ch..end_ch) -%}
+  {%- assign first_book_end_ch = second_book.size -%}
+  {%- for i in (start_ch..first_book_end_ch) -%}
+    {%- assign ch_index = i | minus: 1 -%}
+    {%- assign chapter = first_book[ch_index] -%}
+    {%- if i == start_ch | plus: 0 -%}
+      {%- assign start_v = start_ver -%}
+    {%- else -%}
+      {%- assign start_v = 1 -%}
+    {%- endif -%}
+    {%- if i == end_ch | plus: 0 -%}
+      {%- assign end_v = end_ver -%}
+    {%- else -%}
+      {%- assign end_v = chapter.size -%}
+    {%- endif -%}
+    {%- if start_ch == end_ch -%}
+      <h3>Глава {{ i }}</h3>
+    {%- endif -%}
+    <ol start="{{ start_ver }}">
+    {%- for j in (start_v..end_v) -%}
+    {%- assign ver_index = j | minus: 1 -%}
+      {%- assign verse = chapter[ver_index] -%}
+      <li>{{ verse }}</li>
+    {%- endfor -%}
+    </ol>
+  {%- endfor -%}
+  {%- assign second_book_start_ch = 1 -%}
+  {%- for i in (second_book_start_ch..end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
     {%- assign chapter = second_book[ch_index] -%}
     {%- if i == start_ch | plus: 0 -%}
@@ -82,8 +105,9 @@
     {%- else -%}
       {%- assign end_v = chapter.size -%}
     {%- endif -%}
-    <dt>Глава {{ i }}</dt>
-    <dd>
+    {%- if start_ch == end_ch -%}
+      <h3>Глава {{ i }}</h3>
+    {%- endif -%}
     <ol start="{{ start_ver }}">
     {%- for j in (start_v..end_v) -%}
     {%- assign ver_index = j | minus: 1 -%}
@@ -91,7 +115,5 @@
       <li>{{ verse }}</li>
     {%- endfor -%}
     </ol>
-    </dd>
   {%- endfor -%}
-  </dl>
 {%- endif -%}
