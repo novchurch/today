@@ -16,8 +16,6 @@
   {%- if b.book == start_book -%}
     {%- assign book_index = b.index | minus: 1 -%}
     {%- assign book = bible[book_index] -%}
-    <p>Book: {{ book[0][0] }}</p>
-    <p>Index: {{ book_index }}</p>
     {%- break -%}
   {%- endif -%}
 {%- endfor -%}
