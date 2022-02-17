@@ -4,13 +4,13 @@
 {%- assign start = endings[0] | split: " " -%}
 {%- assign end = endings[1] | split: " " -%}
 {%- assign start_book = start[0] -%}
-{%- assign end_book = end[0] -%}
+{%- assign end_book = end[0] | default: start_book -%}
 {%- assign start_verses = start[1] | split: ":" -%}
 {%- assign end_verses = end[1] | split: ":" -%}
 {%- assign start_ch = start_verses[0] -%}
-{%- assign end_ch = end_verses[0] -%}
+{%- assign end_ch = end_verses[0] | default: start_ch -%}
 {%- assign start_ver = start_verses[1] -%}
-{%- assign end_ver = end_verses[1] -%}
+{%- assign end_ver = end_verses[1] | default: start_ver -%}
 
 {%- for b in books -%}
   {%- if b.book == start_book -%}
@@ -20,9 +20,9 @@
   {%- endif -%}
 {%- endfor -%}
 
-{%- for chapter in book offset:start_ch limit:end_ch -%}
+{%- for chapter in book offset: start_ch limit: end_ch -%}
   <ul>
-  {%- for verse in chapter offset:start_ver limit:end_ver -%}
+  {%- for verse in chapter offset: start_ver limit: end_ver -%}
     <li>{{ verse }}</li>
   {%- endfor -%}
   </ul>
