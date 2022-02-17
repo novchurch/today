@@ -6,20 +6,20 @@
 {%- assign start_verses = start[1] | split: ":" -%}
 {%- assign start_ch = start_verses[0] -%}
 {%- assign start_ver = start_verses[1] -%}
-{% if endings[1] == "" %}
+{% if endings[1] == nil %}
   {%- assign end_book = start_book -%}
   {%- assign end_ch = start_ch -%}
   {%- assign end_ver = start_ver -%} 
 {% else %}
   {%- assign end = endings[1] | split: " " -%}
-  {% if end[1] == "" %}
+  {% if end[1] == nil %}
     {%- assign end_book = start_book -%}
     {%- assign end_verses = end[0] | split: ":" -%}
   {% else %}
     {%- assign end_book = end[0] -%}
     {%- assign end_verses = end[1] | split: ":" -%}
   {% endif %}
-  {% if end_verses[1] == "" %}
+  {% if end_verses[1] == nil %}
     {%- assign end_ch = start_ch -%}
     {%- assign end_ver = end_verses[0] -%}
   {% else %}
