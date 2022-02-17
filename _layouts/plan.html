@@ -18,7 +18,6 @@ layout: default
             {%- include date.html date=post.date -%}
           </a>
         </h2>
-        {%- if site.show_excerpts -%}
         {%- assign day = post.title | minus: 1 -%}
         {%- assign plan = site.data.plan[day] -%}
         <ul style="list-style-type: none; margin-left: 0;">
@@ -27,7 +26,6 @@ layout: default
           <li><h3 style="display: inline;">{{ plan.ps }}</h3></li>
           <li><h3 style="display: inline;">{{ plan.pr }}</h3></li>
         </ul>
-        {%- endif -%}
       </li>
       {%- endfor -%}
     </ul>

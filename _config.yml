@@ -20,7 +20,7 @@ description: «Исследуйте Писания, ибо вы думаете �
 #   - index.md
 #   - contacts.md
 
-show_excerpts: true
+show_excerpts: false
 
 sass:
   style: compressed
