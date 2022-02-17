@@ -28,6 +28,7 @@
   {%- endif -%}
 {%- endif -%}
 
+{%- assign second_book = nil -%}
 {%- for b in books -%}
   {%- if b.book == start_book -%}
     {%- assign book_index = b.index | minus: 1 -%}
