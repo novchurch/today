@@ -28,27 +28,49 @@
   {%- endif -%}
 {%- endif -%}
 
-{%- assign book_trigger = false -%}
-{%- assign book_number = 0 -%}
 {%- for b in books -%}
   {%- if b.book == start_book -%}
-    {%- assign book_trigger = true -%}
-  {%- endif -%}
-  {%- if book_trigger -%}
     {%- assign book_index = b.index | minus: 1 -%}
-    {%- assign bookz[book_number] = bible[book_index] -%}
-    {%- assign book_number = book_number | plus: 1 -%}
-  {%- endif -%}
-  {%- if b.book == end_book -%}
-    {%- assign book_trigger = false -%}
+    {%- assign first_book = bible[book_index] -%}
+  {%- elsif b.book == end_book -%}
+    {%- assign book_index = b.index | minus: 1 -%}
+    {%- assign second_book = bible[book_index] -%}
   {%- endif -%}
 {%- endfor -%}
 
-{% for book in bookz %}
+
+<dl>
+{%- for i in (start_ch..end_ch) -%}
+  {%- assign ch_index = i | minus: 1 -%}
+  {%- assign chapter = first_book[ch_index] -%}
+  {%- if i == start_ch | plus: 0 -%}
+    {%- assign start_v = start_ver -%}
+  {%- else -%}
+    {%- assign start_v = 1 -%}
+  {%- endif -%}
+  {%- if i == end_ch | plus: 0 -%}
+    {%- assign end_v = end_ver -%}
+  {%- else -%}
+    {%- assign end_v = chapter.size -%}
+  {%- endif -%}
+  <dt>Глава {{ i }}</dt>
+  <dd>
+  <ol start="{{ start_ver }}">
+  {%- for j in (start_v..end_v) -%}
+  {%- assign ver_index = j | minus: 1 -%}
+    {%- assign verse = chapter[ver_index] -%}
+    <li>{{ verse }}</li>
+  {%- endfor -%}
+  </ol>
+  </dd>
+{%- endfor -%}
+</dl>
+
+{%- if second_book -%}
   <dl>
   {%- for i in (start_ch..end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
-    {%- assign chapter = book[ch_index] -%}
+    {%- assign chapter = second_book[ch_index] -%}
     {%- if i == start_ch | plus: 0 -%}
       {%- assign start_v = start_ver -%}
     {%- else -%}
@@ -71,4 +93,4 @@
     </dd>
   {%- endfor -%}
   </dl>
-{% endfor %}
+{%- endif -%}
