@@ -36,10 +36,10 @@
   {%- endif -%}
 {%- endfor -%}
 
-{%- for chapter in book offset: start_ch limit: end_ch | minus: start_ch | plus 1 -%}
-  <ul>
-  {%- for verse in chapter offset: start_ver limit: end_ver | minus: start_ver | plus 1 -%}
+{%- for chapter in book offset: start_ch limit: end_ch | plus 1 | minus: start_ch -%}
+  <ol start="{{ start_ver }}">
+  {%- for verse in chapter offset: start_ver limit: end_ver | plus 1 | minus: start_ver -%}
     <li>{{ verse }}</li>
   {%- endfor -%}
-  </ul>
+  </ol>
 {%- endfor -%}
