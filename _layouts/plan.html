@@ -13,15 +13,20 @@ layout: default
     <ul class="post-list">
       {%- for post in site.posts reversed -%}
       <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{%- include date.html date=post.date -%}</span>
-        <h3>
+        <h2>
           <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
+            {%- include date.html date=post.date -%}
           </a>
-        </h3>
+        </h2>
         {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
+        {%- assign day = post.title | minus: 1 -%}
+        {%- assign plan = site.data.plan[day] -%}
+        <ul style="list-style-type: none; margin-left: 0;">
+          <li><h3 style="display: inline;">{{ plan.old }}</h3></li>
+          <li><h3 style="display: inline;">{{ plan.new }}</h3></li>
+          <li><h3 style="display: inline;">{{ plan.ps }}</h3></li>
+          <li><h3 style="display: inline;">{{ plan.pr }}</h3></li>
+        </ul>
         {%- endif -%}
       </li>
       {%- endfor -%}
