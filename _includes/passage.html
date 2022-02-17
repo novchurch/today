@@ -36,8 +36,7 @@
   {%- endif -%}
   {%- if book_trigger -%}
     {%- assign book_index = b.index | minus: 1 -%}
-    {%- assign bookz[0][book_number] = bible[book_index] -%}
-    {%- assign bookz[1][book_number]= b.book -%}
+    {%- assign bookz[book_number] = bible[book_index] -%}
     {%- assign book_number = book_number | plus: 1 -%}
   {%- endif -%}
   {%- if b.book == end_book -%}
@@ -46,11 +45,10 @@
 {%- endfor -%}
 
 {% for book in bookz %}
-  <h3>{{ book[1] }}</h3>
   <dl>
   {%- for i in (start_ch..end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
-    {%- assign chapter = book[0][ch_index] -%}
+    {%- assign chapter = book[ch_index] -%}
     {%- if i == start_ch | plus: 0 -%}
       {%- assign start_v = start_ver -%}
     {%- else -%}
