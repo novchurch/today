@@ -6,27 +6,27 @@
 {%- assign start_verses = start[1] | split: ":" -%}
 {%- assign start_ch = start_verses[0] -%}
 {%- assign start_ver = start_verses[1] -%}
-{% if endings[1] == nil %}
+{%- if endings[1] == nil -%}
   {%- assign end_book = start_book -%}
   {%- assign end_ch = start_ch -%}
   {%- assign end_ver = start_ver -%} 
-{% else %}
+{%- else -%}
   {%- assign end = endings[1] | split: " " -%}
-  {% if end[1] == nil %}
+  {%- if end[1] == nil -%}
     {%- assign end_book = start_book -%}
     {%- assign end_verses = end[0] | split: ":" -%}
-  {% else %}
+  {%- else -%}
     {%- assign end_book = end[0] -%}
     {%- assign end_verses = end[1] | split: ":" -%}
-  {% endif %}
-  {% if end_verses[1] == nil %}
+  {%- endif -%}
+  {%- if end_verses[1] == nil -%}
     {%- assign end_ch = start_ch -%}
     {%- assign end_ver = end_verses[0] -%}
-  {% else %}
+  {%- else -%}
     {%- assign end_ch = end_verses[0] -%}
     {%- assign end_ver = end_verses[1] -%}
-  {% endif %}
-{% endif %}
+  {%- endif -%}
+{%- endif -%}
 
 {%- for b in books -%}
   {%- if b.book == start_book -%}
@@ -36,9 +36,26 @@
   {%- endif -%}
 {%- endfor -%}
 
-{%- for chapter in book offset: start_ch limit: end_ch | plus 1 | minus: start_ch -%}
+{%- assign ch_range = (start_ch..end_ch) -%}
+{%- for i in ch_range -%}
+  {%- assign ch_index = i | minus: 1 -%}
+  {%- assign chapter = book[ch_index] -%}
+  {%- assign last_verse_index = chapter.size | minus: 1 -%}
+  {%- if i == start_ch -%}
+    {%- assign start_v = start_ver -%}
+  {%- else -%}
+    {%- assign start_v = 1 -%}
+  {%- endif -%}
+  {%- if i == end_ch -%}
+    {%- assign end_v = end_ver -%}
+  {%- else -%}
+    {%- assign end_v = last_verse_index -%}
+  {%- endif -%}
   <ol start="{{ start_ver }}">
-  {%- for verse in chapter offset: start_ver limit: end_ver | plus 1 | minus: start_ver -%}
+  {%- assign v_range = (start_v..end_v) -%}
+  {%- for j in v_range -%}
+  {%- assign ver_index = j | minus: 1 -%}
+    {%- assign verse = chapter[ver_index] -%}
     <li>{{ verse }}</li>
   {%- endfor -%}
   </ol>
