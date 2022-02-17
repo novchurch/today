@@ -2,15 +2,31 @@
 {%- assign bible = site.data.rst -%}
 {%- assign endings = include.passage | split: "-" -%}
 {%- assign start = endings[0] | split: " " -%}
-{%- assign end = endings[1] | split: " " -%}
 {%- assign start_book = start[0] -%}
-{%- assign end_book = end[0] | default: nil -%}
 {%- assign start_verses = start[1] | split: ":" -%}
-{%- assign end_verses = end[1] | split: ":" -%}
 {%- assign start_ch = start_verses[0] -%}
-{%- assign end_ch = end_verses[0] | default: nil-%}
 {%- assign start_ver = start_verses[1] -%}
-{%- assign end_ver = end_verses[1] | default: nil -%}
+{% if endings[1] == "" %}
+  {%- assign end_book = start_book -%}
+  {%- assign end_ch = start_ch -%}
+  {%- assign end_ver = start_ver -%} 
+{% else %}
+  {%- assign end = endings[1] | split: " " -%}
+  {% if end[1] == "" %}
+    {%- assign end_book = start_book -%}
+    {%- assign end_verses = end[0] | split: ":" -%}
+  {% else %}
+    {%- assign end_book = end[0] -%}
+    {%- assign end_verses = end[1] | split: ":" -%}
+  {% endif %}
+  {% if end_verses[1] == "" %}
+    {%- assign end_ch = start_ch -%}
+    {%- assign end_ver = end_verses[0] -%}
+  {% else %}
+    {%- assign end_ch = end_verses[0] -%}
+    {%- assign end_ver = end_verses[1] -%}
+  {% endif %}
+{% endif %}
 
 {%- for b in books -%}
   {%- if b.book == start_book -%}
@@ -20,9 +36,9 @@
   {%- endif -%}
 {%- endfor -%}
 
-{%- for chapter in book offset: start_ch limit: end_ch | minus: start_ch -%}
+{%- for chapter in book offset: start_ch limit: end_ch | minus: start_ch | plus 1 -%}
   <ul>
-  {%- for verse in chapter offset: start_ver limit: end_ver | minus: start_ver -%}
+  {%- for verse in chapter offset: start_ver limit: end_ver | minus: start_ver | plus 1 -%}
     <li>{{ verse }}</li>
   {%- endfor -%}
   </ul>
