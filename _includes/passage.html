@@ -52,7 +52,7 @@
     {%- else -%}
       {%- assign end_v = chapter.size -%}
     {%- endif -%}
-    {%- if start_ch == end_ch -%}
+    {%- if start_ch != end_ch -%}
       <h3>Глава {{ i }}</h3>
     {%- endif -%}
     <ol start="{{ start_ver }}">
@@ -105,7 +105,7 @@
     {%- else -%}
       {%- assign end_v = chapter.size -%}
     {%- endif -%}
-    {%- if start_ch == end_ch -%}
+    {%- if start_ch != end_ch -%}
       <h3>Глава {{ i }}</h3>
     {%- endif -%}
     <ol start="{{ start_ver }}">
