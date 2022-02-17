@@ -7,14 +7,14 @@
 {%- assign start_ch = start_verses[0] -%}
 {%- assign start_ver = start_verses[1]-%}
 <script>console.log("endings[1]: {{ endings[1] }}");</script>
-{%- if endings[1] == nil -%}
+{%- if endings[1].size == 0 -%}
   {%- assign end_book = start_book -%}
   {%- assign end_ch = start_ch -%}
   {%- assign end_ver = start_ver -%} 
 {%- else -%}
   {%- assign end = endings[1] | split: " " -%}
   <script>console.log("end[1]: {{ end[1] }}");</script>
-  {%- if end[1] == nil -%}
+  {%- if end[1].size == 0 -%}
     {%- assign end_book = start_book -%}
     {%- assign end_verses = end[0] | split: ":" -%}
   {%- else -%}
@@ -22,7 +22,7 @@
     {%- assign end_verses = end[1] | split: ":" -%}
   {%- endif -%}
   <script>console.log("end_verses[1]: {{ end_verses[1] }}");</script>
-  {%- if end_verses[1] == nil -%}
+  {%- if end_verses[1].size == 0 -%}
     {%- assign end_ch = start_ch -%}
     {%- assign end_ver = end_verses[0] -%}
   {%- else -%}
