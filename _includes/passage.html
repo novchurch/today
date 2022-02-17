@@ -15,13 +15,16 @@
 {%- for b in books -%}
   {%- if b.book == start_book -%}
     {%- assign book = bible[b.index | minus: 1] -%}
+    <p>Book: {{ book }}</p>
+    <p>Index: {{ b.index }}</p>
     {%- break -%}
   {%- endif -%}
 {%- endfor -%}
-<p>
-  {%- for chapter in book offset:start_ch -%}
-    {%- for verse in chapter offset:start_ver -%}
-      <li>{{ verse }}</li>
-    {%- endfor -%}
+
+{%- for chapter in book offset:start_ch limit:end_ch -%}
+  <ul>
+  {%- for verse in chapter offset:start_ver limit:end_ver -%}
+    <li>{{ verse }}</li>
   {%- endfor -%}
-</p>
+  </ul>
+{%- endfor -%}
