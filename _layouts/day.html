@@ -11,10 +11,10 @@ layout: default
     {%- assign day = page.title | minus: 1 -%}
     {%- assign plan = site.data.plan[day] -%}
     <ul style="list-style-type: none; margin-left: 0;">
-      <li><details><summary><h2 style="display: inline;">{{ plan.old }}</h2></summary></details></li>
-      <li><details><summary><h2 style="display: inline;">{{ plan.new }}</h2></summary></details></li>
-      <li><details><summary><h2 style="display: inline;">{{ plan.ps }}</h2></summary></details></li>
-      <li><details><summary><h2 style="display: inline;">{{ plan.pr }}</h2></summary></details></li>
+      <li><details><summary><h2 style="display: inline;">{{ plan.old }}</h2></summary><p>{%- include passage.html passage=plan.old -%}</p></details></li>
+      <li><details><summary><h2 style="display: inline;">{{ plan.new }}</h2></summary><p>{%- include passage.html passage=plan.old -%}</p></details></li>
+      <li><details><summary><h2 style="display: inline;">{{ plan.ps }}</h2></summary><p>{%- include passage.html passage=plan.old -%}</p></details></li>
+      <li><details><summary><h2 style="display: inline;">{{ plan.pr }}</h2></summary><p>{%- include passage.html passage=plan.old -%}</p></details></li>
     </ul>
     {{ content }}
   </div>
