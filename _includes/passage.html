@@ -28,32 +28,49 @@
   {%- endif -%}
 {%- endif -%}
 
+{%- assign book_trigger = false -%}
+{%- assign book_number = 0 -%}
 {%- for b in books -%}
   {%- if b.book == start_book -%}
+    {%- assign book_trigger = true -%}
+  {%- endif -%}
+  {%- if book_trigger -%}
     {%- assign book_index = b.index | minus: 1 -%}
-    {%- assign book = bible[book_index] -%}
-    {%- break -%}
+    {%- assign bookz[book_number][0] = bible[book_index] -%}
+    {%- assign bookz[book_number][1] = b.book -%}
+    {%- assign book_number = book_number | plus: 1 -%}
+  {%- endif -%}
+  {%- if b.book == end_book -%}
+    {%- assign book_trigger = false -%}
   {%- endif -%}
 {%- endfor -%}
 
-{%- for i in (start_ch..end_ch) -%}
-  {%- assign ch_index = i | minus: 1 -%}
-  {%- assign chapter = book[ch_index] -%}
-  {%- if i == start_ch | plus: 0 -%}
-    {%- assign start_v = start_ver -%}
-  {%- else -%}
-    {%- assign start_v = 1 -%}
-  {%- endif -%}
-  {%- if i == end_ch | plus: 0 -%}
-    {%- assign end_v = end_ver -%}
-  {%- else -%}
-    {%- assign end_v = chapter.size -%}
-  {%- endif -%}
-  <ol start="{{ start_ver }}">
-  {%- for j in (start_v..end_v) -%}
-  {%- assign ver_index = j | minus: 1 -%}
-    {%- assign verse = chapter[ver_index] -%}
-    <li>{{ verse }}</li>
+{% for book in bookz %}
+  <h3>{{ book[1] }}</h3>
+  <dl>
+  {%- for i in (start_ch..end_ch) -%}
+    {%- assign ch_index = i | minus: 1 -%}
+    {%- assign chapter = book[0][ch_index] -%}
+    {%- if i == start_ch | plus: 0 -%}
+      {%- assign start_v = start_ver -%}
+    {%- else -%}
+      {%- assign start_v = 1 -%}
+    {%- endif -%}
+    {%- if i == end_ch | plus: 0 -%}
+      {%- assign end_v = end_ver -%}
+    {%- else -%}
+      {%- assign end_v = chapter.size -%}
+    {%- endif -%}
+    <dt>Глава {{ i }}</dt>
+    <dd>
+    <ol start="{{ start_ver }}">
+    {%- for j in (start_v..end_v) -%}
+    {%- assign ver_index = j | minus: 1 -%}
+      {%- assign verse = chapter[ver_index] -%}
+      <li>{{ verse }}</li>
+    {%- endfor -%}
+    </ol>
+    </dd>
   {%- endfor -%}
-  </ol>
-{%- endfor -%}
+  </dl>
+{% endfor %}
