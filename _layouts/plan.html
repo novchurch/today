@@ -29,7 +29,16 @@ layout: default
       </li>
       {%- endfor -%}
     </ul>
-
+   <style>
+     @supports not (gap: 0 20px) {
+       .post-list {
+         margin: 0 10px;
+       }
+       .post-list > * {
+         margin: 0 10px;
+       }
+     }
+   </style>
   {%- endif -%}
 
 </div>
