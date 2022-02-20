@@ -34,6 +34,7 @@
   {%- endif -%}
 {%- endif -%}
 
+{%- assign second_book = false -%}
 {%- for b in books -%}
   {%- if b.book == start_book -%}
     {%- assign book_index = b.index | minus: 1 -%}
@@ -122,10 +123,12 @@
     {%- endfor -%}
     </ol>
   {%- endfor -%}
+  <script>
+    console.log("second_book: {{ second_book }}");
+    </script>
 {%- endif -%}
 
 <script>
-console.log("second_book: {{ second_book }}");
 console.log("start_book: {{ start_book }}");
 console.log("end_book: {{ end_book }}");
 console.log("start_ch: {{ start_ch }}");
