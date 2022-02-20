@@ -84,19 +84,17 @@
 {%- endunless -%}
 
 {%- if second_book -%}
-  {%- assign first_book_end_ch = second_book.size | concat: "" -%}
+  {%- assign first_book_end_ch = second_book.size | append: "" -%}
   {%- for i in (start_ch..first_book_end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
     {%- assign chapter = first_book[ch_index] -%}
+    {%- assign start_v = 1 -%}
     {%- if i == start_ch_num -%}
       {%- assign start_v = start_ver_num -%}
-    {%- else -%}
-      {%- assign start_v = 1 -%}
     {%- endif -%}
+    {%- assign end_v = chapter.size -%}
     {%- if i == end_ch_num -%}
       {%- assign end_v = end_ver_num -%}
-    {%- else -%}
-      {%- assign end_v = chapter.size -%}
     {%- endif -%}
     {%- if start_ch == end_ch -%}
       <h3>Глава {{ i }}</h3>
@@ -109,19 +107,17 @@
     {%- endfor -%}
     </ol>
   {%- endfor -%}
-  {%- assign second_book_start_ch = 1 | concat: "" -%}
+  {%- assign second_book_start_ch = 1 | append: "" -%}
   {%- for i in (second_book_start_ch..end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
     {%- assign chapter = second_book[ch_index] -%}
+    {%- assign start_v = 1 -%}
     {%- if i == start_ch_num -%}
-      {%- assign start_v = start_ver_num -%}
-    {%- else -%}
-      {%- assign start_v = 1 -%}
+      {%- assign start_v = start_ver_num -%} 
     {%- endif -%}
+    {%- assign end_v = chapter.size -%}
     {%- if i == end_ch_num -%}
       {%- assign end_v = end_ver_num -%}
-    {%- else -%}
-      {%- assign end_v = chapter.size -%}
     {%- endif -%}
     {%- if start_ch != end_ch -%}
       <h3>Глава {{ i }}</h3>
