@@ -9,17 +9,14 @@
 {%- assign start_ver = start_verses[1]-%}
 {%- assign start_ver_num = start_ver | plus: 0 -%}
 <script>console.log("endings[1]: {{ endings[1] }}");</script>
-{%- assign second_ending_size = endings[1] | size -%}
-{%- if second_ending_size == 0 -%}
+{%- if endings[1] == empty -%}
   {%- assign end_book = start_book -%}
   {%- assign end_ch = start_ch -%}
   {%- assign end_ver = start_ver -%} 
 {%- else -%}
   {%- assign end = endings[1] | split: " " -%}
   <script>console.log("end[1]: {{ end[1] }}");</script>
-  {%- assign second_end_size = end[1] | size -%}
-  <script>console.log("second_end_size: {{ second_end_size }}");</script>
-  {%- if second_end_size == 0 -%}
+  {%- if end[1] == empty -%}
     {%- assign end_book = start_book -%}
     {%- assign end_verses = end[0] | split: ":" -%}
   {%- else -%}
@@ -27,9 +24,7 @@
     {%- assign end_verses = end[1] | split: ":" -%}
   {%- endif -%}
   <script>console.log("end_verses[1]: {{ end_verses[1] }}");</script>
-  {%- assign second_end_verses_size = end_verses[1] | size -%}
-  <script>console.log("second_end_verses_size: {{ second_end_verses_size }}");</script>
-  {%- if second_end_verses_size == 0 -%}
+  {%- if end_verses[1] == empty -%}
     {%- assign end_ch = start_ch -%}
     {%- assign end_ver = end_verses[0] -%}
   {%- else -%}
@@ -55,6 +50,7 @@
   {%- for i in (start_ch..end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
     {%- assign chapter = first_book[ch_index] -%}
+    {%- assign start_v = 1 -%}
     {%- if i == start_ch_num -%}
       {%- assign start_v = start_ver_num -%}
       <script>
@@ -63,15 +59,8 @@
         console.log("start_ch: {{ start_ch }} ===========");
         console.log("start_v: {{ start_v }} ===========");
       </script>
-    {%- else -%}
-      {%- assign start_v = 1 -%}
-      <script>
-        console.log("i != start_ch");
-        console.log("i: {{ i }}");
-        console.log("start_ch: {{ start_ch }}");
-        console.log("start_v: {{ start_v }}");
-      </script>
     {%- endif -%}
+    {%- assign end_v = chapter.size -%}
     {%- if i == end_ch_num -%}
       {%- assign end_v = end_ver_num -%}
       <script>
@@ -79,14 +68,6 @@
         console.log("i: {{ i }} ===========");
         console.log("end_ch: {{ end_ch }} ===========");
         console.log("end_v: {{ end_v }} ===========");
-      </script>
-    {%- else -%}
-      {%- assign end_v = chapter.size -%}
-      <script>
-        console.log("i != end_ch");
-        console.log("i: {{ i }}");
-        console.log("end_ch: {{ end_ch }}");
-        console.log("end_v: {{ end_v }}");
       </script>
     {%- endif -%}
     {%- if start_ch != end_ch -%}
@@ -103,7 +84,7 @@
 {%- endunless -%}
 
 {%- if second_book -%}
-  {%- assign first_book_end_ch = second_book.size -%}
+  {%- assign first_book_end_ch = second_book.size | concat: "" -%}
   {%- for i in (start_ch..first_book_end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
     {%- assign chapter = first_book[ch_index] -%}
@@ -128,7 +109,7 @@
     {%- endfor -%}
     </ol>
   {%- endfor -%}
-  {%- assign second_book_start_ch = 1 -%}
+  {%- assign second_book_start_ch = 1 | concat: "" -%}
   {%- for i in (second_book_start_ch..end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
     {%- assign chapter = second_book[ch_index] -%}
