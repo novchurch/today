@@ -18,6 +18,7 @@
   {%- assign end = endings[1] | split: " " -%}
   <script>console.log("end[1]: {{ end[1] }}");</script>
   {%- assign second_end_size = end[1] | size -%}
+  <script>console.log("second_end_size: {{ second_end_size }}");</script>
   {%- if second_end_size == 0 -%}
     {%- assign end_book = start_book -%}
     {%- assign end_verses = end[0] | split: ":" -%}
@@ -27,6 +28,7 @@
   {%- endif -%}
   <script>console.log("end_verses[1]: {{ end_verses[1] }}");</script>
   {%- assign second_end_verses_size = end_verses[1] | size -%}
+  <script>console.log("second_end_verses_size: {{ second_end_verses_size }}");</script>
   {%- if second_end_verses_size == 0 -%}
     {%- assign end_ch = start_ch -%}
     {%- assign end_ver = end_verses[0] -%}
@@ -35,8 +37,8 @@
     {%- assign end_ver = end_verses[1] -%}
   {%- endif -%}
 {%- endif -%}
-{%- assign end_ch_num = end_ch | minus: 0 -%}
-{%- assign end_ver_num = end_ver | minus: 0 -%}
+{%- assign end_ch_num = end_ch | plus: 0 -%}
+{%- assign end_ver_num = end_ver | plus: 0 -%}
 
 {%- assign second_book = false -%}
 {%- for b in books -%}
