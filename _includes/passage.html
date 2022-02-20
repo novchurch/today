@@ -51,13 +51,37 @@
     {%- assign chapter = first_book[ch_index] -%}
     {%- if i == start_ch -%}
       {%- assign start_v = start_ver -%}
+      <script>
+        console.log("i == start_ch");
+        console.log("i: {{ i }}");
+        console.log("start_ch: {{ start_ch }}");
+        console.log("start_v: {{ start_v }}");
+      </script>
     {%- else -%}
       {%- assign start_v = 1 -%}
+      <script>
+        console.log("i != start_ch");
+        console.log("i: {{ i }}");
+        console.log("start_ch: {{ start_ch }}");
+        console.log("start_v: {{ start_v }}");
+      </script>
     {%- endif -%}
     {%- if i == end_ch -%}
       {%- assign end_v = end_ver -%}
+      <script>
+        console.log("i == end_ch");
+        console.log("i: {{ i }}");
+        console.log("end_ch: {{ end_ch }}");
+        console.log("end_v: {{ end_v }}");
+      </script>
     {%- else -%}
       {%- assign end_v = chapter.size -%}
+      <script>
+        console.log("i != end_ch");
+        console.log("i: {{ i }}");
+        console.log("end_ch: {{ end_ch }}");
+        console.log("end_v: {{ end_v }}");
+      </script>
     {%- endif -%}
     {%- if start_ch != end_ch -%}
       <h3>Глава {{ i }}</h3>
@@ -125,7 +149,7 @@
   {%- endfor -%}
   <script>
     console.log("second_book: {{ second_book }}");
-    </script>
+  </script>
 {%- endif -%}
 
 <script>
