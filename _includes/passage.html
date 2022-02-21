@@ -47,11 +47,11 @@
   {%- for i in (start_ch..end_ch) -%}
     {%- assign ch_index = i | minus: 1 -%}
     {%- assign chapter = first_book[ch_index] -%}
-    {%- assign start_v = "1" -%}
+    {%- assign start_v = 1 -%}
     {%- if i == start_ch_num -%}
-      {%- assign start_v = start_ver_num -%}
+      {%- assign start_v = start_ver_num -%} 
     {%- endif -%}
-    {%- assign end_v = chapter.size | append: "" -%}
+    {%- assign end_v = chapter.size -%}
     {%- if i == end_ch_num -%}
       {%- assign end_v = end_ver_num -%}
     {%- endif -%}
