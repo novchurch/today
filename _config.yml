@@ -1,4 +1,5 @@
-theme: minima
+# theme: minima
+remote_theme: jekyll/minima
 minima:
   skin: dark # classic # solarized # solarized-dark # dark
 
