@@ -58,7 +58,7 @@
     {%- if start_ch != end_ch -%}
       <h3>Глава {{ i }}</h3>
     {%- endif -%}
-    <pre>{{ chapter }}</pre>
+    <script>console.log({{ chapter }})</script>
     <ol start="{{ start_v }}">
     {%- for j in (start_v..end_v) -%}
     {%- assign ver_index = j | minus: 1 -%}
